@@ -1,0 +1,74 @@
+<Aplicaciones>
+	<Aplicacion herramienta="ffmpeg">
+		<SubApp nombre="ffmpegSub1">
+			<Parametro 	contenido="fmmpegParam1"
+						tipo="obligatorio" />
+			<Parametro 	contenido="fmmpegParam2"
+						tipo="obligatorio" />
+		</SubApp>
+		<SubApp nombre="ffmpegSub2">
+			<Parametro 	contenido="fmmpegParam3"
+						tipo="obligatorio" />
+			<Parametro 	contenido="fmmpegParam4"
+						tipo="obligatorio" />
+		</SubApp>
+	</Aplicacion>
+	<Aplicacion herramienta="exiftool">
+		<SubApp nombre="exiftoolSub1">
+			<Parametro 	contenido="exiftoolParam1"
+						tipo="obligatorio" />
+			<Parametro 	contenido="exiftoolParam2"
+						tipo="obligatorio" />
+		</SubApp>
+		<SubApp nombre="exiftoolSub2">
+			<Parametro 	contenido="exiftoolParam3"
+						tipo="obligatorio" />
+			<Parametro 	contenido="exiftoolParam4"
+						tipo="obligatorio" />
+		</SubApp>
+	</Aplicacion>
+	<Aplicacion herramienta="virtualdub">
+		<SubApp nombre="virtualdubSub1">
+			<Parametro 	contenido="virtualdubParam1"
+						tipo="obligatorio" />
+			<Parametro 	contenido="virtualdubParam2"
+						tipo="obligatorio" />
+		</SubApp>
+		<SubApp nombre="virtualdubSub2">
+			<Parametro 	contenido="virtualdubParam3"
+						tipo="obligatorio" />
+			<Parametro 	contenido="virtualdubParam4"
+						tipo="obligatorio" />
+		</SubApp>
+	</Aplicacion>
+	<Aplicacion herramienta="git">
+		<SubApp nombre="commit">
+			<Parametro 	contenido="nombre_rama"
+						tipo="obligatorio" />
+			<Parametro 	contenido="mensaje"
+						tipo="opcional" 
+						cotaMax="250" />
+		</SubApp>
+		<SubApp nombre="push">
+			<Parametro 	contenido="nombre_rama"
+						tipo="obligatorio" />
+			<Parametro 	contenido="usuario"
+						tipo="obligatorio" />
+			<Parametro 	contenido="password"
+						tipo="obligatorio"
+						cotaMin="6" 
+						cotaMax="12" />
+		</SubApp>
+		<SubApp nombre="fetch" />
+		<SubApp nombre="merge">
+			<Parametro	contenido="nombre_rama"
+						tipo="obligatorio" />
+		</SubApp>
+		<SubApp nombre="pull" />
+		<SubApp nombre="add" />
+		<SubApp nombre="revert">
+			<Parametro 	contenido="hash_commit" 
+						tipo="obligatorio" />
+		</SubApp>
+	</Aplicacion>
+</Aplicaciones>
