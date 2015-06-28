@@ -1,12 +1,9 @@
 package Interfaz;
 
-import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.Container;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -22,7 +19,6 @@ import javax.swing.border.EmptyBorder;
 import EstructuraXML.Aplicacion;
 import EstructuraXML.Parametro;
 import EstructuraXML.SubAplicacion;
-import EstructuraXML.Tag;
 import Parser.CPoolXMLHandler;
 import Parser.Parser;
 
@@ -32,10 +28,15 @@ import javax.swing.event.DocumentListener;
 
 public class VentanaSwing extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JPanel contentPane;
 	JPanel refPanelListaApps = new JPanel();
 	JPanel refPanelListaSubApps = new JPanel();
 	JPanel refPanelListaParametros = new JPanel();
+	JButton refBotonContinue = new JButton("Validar");
 	JButton refBotonComando = new JButton("Generar comando");
 	String comandoParcial = new String("");
 	Parser parser = new Parser();
@@ -161,7 +162,7 @@ public class VentanaSwing extends JFrame {
 			 ValidadorParametro validador = new ValidadorParametro(texto, parametros.get(i));
 			 validadores.add(validador);
 		}
-		this.generarBotonCmd();
+		this.generarBotonContinue();
 		refPanelListaParametros = panelListaParametros;
 		contentPane.add(panelListaParametros, 2);
 	}
@@ -173,15 +174,32 @@ public class VentanaSwing extends JFrame {
 		refBotonComando = botonComando;
 		contentPane.add(refBotonComando);
 	}
+	
+	public void generarBotonContinue(){
+		contentPane.remove(refBotonContinue);
+		JButton botonContinue = new JButton("Validar");
+		botonContinue.addActionListener(new EventoContinuar(this));
+		refBotonContinue = botonContinue;
+		contentPane.add(refBotonContinue);
+	}
 
 	public String generarCmd() {
 		String comandoAux;
 		comandoAux = (String) ((JComboBox<String>) refPanelListaApps.getComponent(1)).getSelectedItem();
 		comandoAux = comandoAux+" "+(String) ((JComboBox<String>) refPanelListaSubApps.getComponent(1)).getSelectedItem();
-		//System.out.println("EL cmd parcial: "+comando+comandoParcial );
+		//System.out.println("EL cmd parcial: "+comandoAux+comandoParcial );
 		return comandoAux+comandoParcial;
 	}
-
+	
+	public boolean tieneParametrosValidos() {
+		int i = 0;
+		while(i < validadores.size()){
+			if(validadores.get(i).tieneParametroValido() == false) return false;
+			i++;
+		}
+		return true;
+	}
+	
 	private void textoParametros() {
 		this.reiniciarComandoParcial();
 		int i = 0;
@@ -189,7 +207,7 @@ public class VentanaSwing extends JFrame {
 			comandoParcial = comandoParcial+" "+(String) validadores.get(i).generarCmd();
 			i++;
 		}
-		//System.out.println("Texto: "+textoParametros);
+		//System.out.println("Texto: "+comandoParcial);
 	}
 	
     private void setJTexFieldChanged(JTextField txt)
@@ -223,21 +241,21 @@ public class VentanaSwing extends JFrame {
         	//refBotonComando.removeAll();
         	this.textoParametros();
         	//System.out.println("Change: " + comandoParcial);
-        	this.generarBotonCmd();
+        	this.generarBotonContinue();
         }
         else if (type.equals(DocumentEvent.EventType.INSERT))
         {
         	//refBotonComando.removeAll();
         	this.textoParametros();
         	//System.out.println("Instert: " + comandoParcial);
-        	this.generarBotonCmd();
+        	this.generarBotonContinue();
         }
         else if (type.equals(DocumentEvent.EventType.REMOVE))
         {
         	//refBotonComando.removeAll();
         	this.textoParametros();
         	//System.out.println("Remove: " + comandoParcial);
-        	this.generarBotonCmd();
+        	this.generarBotonContinue();
         }
    }
 
@@ -248,6 +266,9 @@ public class VentanaSwing extends JFrame {
 	public void reiniciarValidadores() {
 		validadores.clear();
 	}
+
+	public Component getRefBotonComando() {
+		return this.refBotonComando;
+	}
    
-	
 }

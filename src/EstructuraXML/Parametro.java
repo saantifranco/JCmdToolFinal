@@ -1,5 +1,7 @@
 package EstructuraXML;
 
+import javax.swing.JOptionPane;
+
 public class Parametro extends Tag {
 	String tipoValidacion; // Indica si debe ser solicitado al usuario o ya se esta proveyendo
 	int cotaMin = -9999; // Mínimo de caracteres a ingresar en un determinado Tag
@@ -35,6 +37,8 @@ public class Parametro extends Tag {
 			if(unValor.length() == 0 && tipoValidacion == "obligatorio") throw new RuntimeException("El valor ingresado no es válido");
 			else return true;
 		}
-		else throw new RuntimeException("El valor ingresado no es válido");
+		else JOptionPane.showMessageDialog(null, "Parametro "+this.getValor()+" no válido.");
+			//throw new RuntimeException("El valor ingresado no es válido");
+		return null;
 	}
 }

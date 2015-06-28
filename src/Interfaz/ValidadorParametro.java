@@ -1,5 +1,6 @@
 package Interfaz;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import EstructuraXML.Parametro;
@@ -19,15 +20,20 @@ public class ValidadorParametro {
 	
 	public Boolean validarCmd(){
 		try {
-			 parametro.validarContenido(texto.getText());
+			 return parametro.validarContenido(texto.getText());
 		} 
 		catch (Exception e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Parametro "+parametro.getValor()+" no válido.");
+			//e.printStackTrace();
 		}
 		return null;
 	}
 	
 	public String generarCmd(){
 		return texto.getText();
+	}
+
+	public Boolean tieneParametroValido() {
+		return parametro.validarContenido(texto.getText());	
 	}
 }
