@@ -30,7 +30,7 @@ public class ValidadorParametro {
 	}
 	
 	public String generarCmd(){
-		return texto.getText();
+		return parametro.getPrefijo()+" "+texto.getText();
 	}
 
 	public Boolean tieneParametroValido() {

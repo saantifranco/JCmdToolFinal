@@ -38,8 +38,12 @@ public class CPoolXMLHandler extends DefaultHandler {
 			parametro = new Parametro();
 			for(int i=0; i<attributes.getLength(); i++) // Persistencia
 			{
-				//tagSimple.setNombre(attributes.getQName(i));
-				parametro.setValor(attributes.getValue(i));
+				parametro.setPrefijo(attributes.getValue(i));
+				
+				if(attributes.getQName(i+1) == "contenido") {
+					parametro.setValor(attributes.getValue(i+1));
+					i++;
+				}
 				
 				if(attributes.getQName(i+1) == "tipo") {
 					parametro.setTipoValidacion(attributes.getValue(i+1));
@@ -66,6 +70,10 @@ public class CPoolXMLHandler extends DefaultHandler {
 			{
 				//tagCompuesto.setNombre(attributes.getQName(i));
 				subAplicacion.setValor(attributes.getValue(i));
+				/*if(attributes.getQName(i+1) == "usoReal") {
+					subAplicacion.setUsoReal(attributes.getValue(i+1));
+					i++;
+				}*/
 			}
 		}
 		if(qName == "Aplicacion"){

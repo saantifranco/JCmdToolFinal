@@ -13,6 +13,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
@@ -38,6 +39,7 @@ public class VentanaSwing extends JFrame {
 	JPanel refPanelListaParametros = new JPanel();
 	JButton refBotonContinue = new JButton("Validar");
 	JButton refBotonComando = new JButton("Generar comando");
+	JTextArea refTextArea = new JTextArea();
 	String comandoParcial = new String("");
 	Parser parser = new Parser();
 	CPoolXMLHandler handler = new CPoolXMLHandler();
@@ -77,11 +79,14 @@ public class VentanaSwing extends JFrame {
 	    //Container contentPane = getContentPane();
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new GridLayout(3, 1));
+		contentPane.setLayout(new GridLayout(4, 1));
 		setContentPane(contentPane);
 		contentPane.add(refPanelListaApps, 0);
 		contentPane.add(refPanelListaSubApps, 1);
 		contentPane.add(refPanelListaParametros, 2);
+		JTextArea textArea = new JTextArea();
+		refTextArea = textArea;
+		contentPane.add(refTextArea);
 		
 		this.generarPanelAplicaciones(apps);
 	}
@@ -110,6 +115,7 @@ public class VentanaSwing extends JFrame {
 		 comboBoxApps.addItemListener(new EventoSubAplicaciones(this, apps, comboBoxApps));
 		 refPanelListaApps = panelListaApps;
 		 contentPane.add(refPanelListaApps, 0); 
+		 contentPane.updateUI();
 
 	}
 
@@ -135,6 +141,7 @@ public class VentanaSwing extends JFrame {
 		comboBoxSubApps.addItemListener(new EventoParametros(this, appElegida, comboBoxSubApps));
 		refPanelListaSubApps = panelListaSubApps;
 		contentPane.add(panelListaSubApps, 1);
+		contentPane.updateUI();
 	}
 	
 
@@ -165,22 +172,25 @@ public class VentanaSwing extends JFrame {
 		this.generarBotonContinue();
 		refPanelListaParametros = panelListaParametros;
 		contentPane.add(panelListaParametros, 2);
+		contentPane.updateUI();
 	}
 	
 	public void generarBotonCmd(){
 		contentPane.remove(refBotonComando);
 		JButton botonComando = new JButton("Generar comando");
-		botonComando.addActionListener(new EventoGenerarCmd(this.generarCmd()));
+		botonComando.addActionListener(new EventoGenerarCmd(this.generarCmd(), refTextArea));
 		refBotonComando = botonComando;
 		contentPane.add(refBotonComando);
+		contentPane.updateUI();
 	}
 	
 	public void generarBotonContinue(){
 		contentPane.remove(refBotonContinue);
 		JButton botonContinue = new JButton("Validar");
-		botonContinue.addActionListener(new EventoContinuar(this));
+		botonContinue.addActionListener(new EventoContinuar(this, contentPane));
 		refBotonContinue = botonContinue;
 		contentPane.add(refBotonContinue);
+		contentPane.updateUI();
 	}
 
 	public String generarCmd() {
@@ -188,6 +198,7 @@ public class VentanaSwing extends JFrame {
 		comandoAux = (String) ((JComboBox<String>) refPanelListaApps.getComponent(1)).getSelectedItem();
 		comandoAux = comandoAux+" "+(String) ((JComboBox<String>) refPanelListaSubApps.getComponent(1)).getSelectedItem();
 		//System.out.println("EL cmd parcial: "+comandoAux+comandoParcial );
+		contentPane.updateUI();
 		return comandoAux+comandoParcial;
 	}
 	

@@ -6,6 +6,15 @@ public class Parametro extends Tag {
 	String tipoValidacion; // Indica si debe ser solicitado al usuario o ya se esta proveyendo
 	int cotaMin = -9999; // Mínimo de caracteres a ingresar en un determinado Tag
 	int cotaMax = -9999; // Máximo de caracteres a ingresar en un determinado Tag
+	String prefijo;
+	
+	public String getPrefijo() {
+		return prefijo;
+	}
+
+	public void setPrefijo(String prefijo) {
+		this.prefijo = prefijo;
+	}
 	
 	public String getTipoValidacion(){
 		return this.tipoValidacion;
