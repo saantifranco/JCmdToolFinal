@@ -17,16 +17,17 @@ public class ValidadorParametro {
 		return this.texto;
 	}
 	
-	public String generarCmd(){
+	public Boolean validarCmd(){
 		try {
-			if(parametro.validarContenido(texto.getText())){
-				System.out.println("Texto sin validar: " + texto.getText());
-				return texto.getText();
-			}
+			 parametro.validarContenido(texto.getText());
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public String generarCmd(){
+		return texto.getText();
 	}
 }

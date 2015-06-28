@@ -45,9 +45,8 @@
 		<SubApp nombre="commit">
 			<Parametro 	contenido="nombre_rama"
 						tipo="obligatorio" />
-			<Parametro 	contenido="mensaje"
-						tipo="opcional" 
-						cotaMax="250" />
+			<Parametro contenido="mensaje" tipo="opcional" cotaMin="0"
+				cotaMax="250" />
 		</SubApp>
 		<SubApp nombre="push">
 			<Parametro 	contenido="nombre_rama"

@@ -16,7 +16,8 @@ public class EventoGenerarCmd implements ActionListener{
 	 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JOptionPane.showMessageDialog(null, "Comando: " + comando);
+		JOptionPane.showMessageDialog(null, "Comando final : " + comando);
+		System.out.println("Comando final: " + comando);
 	}
 
 
