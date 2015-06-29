@@ -31,7 +31,7 @@ public class EventoSubAplicaciones implements ItemListener {
 		ventana.reiniciarValidadores();
 		Aplicacion appElegida = new Aplicacion();
 		String nombreAppElegida = (String) comboBoxApps.getSelectedItem();
-		
+
 		for(int i = 0; i < apps.size(); i++){
 			if(apps.get(i).getValor() == nombreAppElegida)
 				appElegida = apps.get(i);

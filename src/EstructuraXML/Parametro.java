@@ -41,12 +41,14 @@ public class Parametro extends Tag {
 	}
 	
 	public Boolean validarContenido(String unValor){
+		System.out.println(unValor.length());
 		if((unValor.length() >= cotaMin && unValor.length() <= cotaMax) || cotaMin == cotaMax){
 			if(tipoValidacion != "obligatorio") return true;
-			if(unValor.length() == 0 && tipoValidacion == "obligatorio") throw new RuntimeException("El valor ingresado no es válido");
+			else;
+			if(unValor.length() == 0) JOptionPane.showMessageDialog(null, "El parámetro "+this.getValor()+" no puede ser nulo.");
 			else return true;
 		}
-		else JOptionPane.showMessageDialog(null, "Parametro "+this.getValor()+" no válido.");
+		else JOptionPane.showMessageDialog(null, "Parámetro "+this.getValor()+" no válido.");
 			//throw new RuntimeException("El valor ingresado no es válido");
 		return null;
 	}

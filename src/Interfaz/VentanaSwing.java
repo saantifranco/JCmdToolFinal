@@ -1,5 +1,6 @@
 package Interfaz;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
@@ -71,7 +72,6 @@ public class VentanaSwing extends JFrame {
 		super("JCmdTool: Java Command Tool");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
-		
 		parser.setHandler(handler);
 	    parser.parsearXml("algoritmos2_tp.xml");
 	    List<Aplicacion> apps = new ArrayList<Aplicacion>();
@@ -102,15 +102,15 @@ public class VentanaSwing extends JFrame {
 		 panelListaApps.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		 panelListaApps.setLayout(null);
 		 JLabel label = new JLabel("Aplicaciones :");
-		 label.setBounds(25, 10, 65, 14);
+		 label.setBounds(25, 10, 100, 20);
 		 panelListaApps.add(label);
 		 Vector<String> aplicaciones = new Vector<String>();
 		 for(int i = 0; i < apps.size(); i++){
 			 aplicaciones.addElement(apps.get(i).getValor());
 		 }
 		 JComboBox<String> comboBoxApps = new JComboBox<String>(aplicaciones);
-		 comboBoxApps.setBounds(100, 10, 144, 20);
-		 comboBoxApps.setSelectedIndex(3);
+		 comboBoxApps.setBounds(125, 10, 144, 20);
+		 comboBoxApps.setSelectedIndex(0);
 		 //System.out.println(comboBoxApps.getSelectedItem());
 		 panelListaApps.add(comboBoxApps);
 		 panelListaApps.setVisible(true);
@@ -126,7 +126,7 @@ public class VentanaSwing extends JFrame {
 		//Panel SubApps
 		JPanel panelListaSubApps = new JPanel();
 		JLabel label = new JLabel("Sub-Aplicaciones :");
-		label.setBounds(25, 60, 65, 14);
+		label.setBounds(25, 60, 125, 20);
 		panelListaSubApps.add(label);
 		//panelListaSubApps.setLayout(new FlowLayout());
 		panelListaSubApps.setLayout(null);
@@ -135,7 +135,7 @@ public class VentanaSwing extends JFrame {
 				 subApps.addElement(appElegida.getSubAplicacioes().get(i).getValor());
 		}
 		JComboBox<String> comboBoxSubApps = new JComboBox<String>(subApps);
-		comboBoxSubApps.setBounds(100, 60, 144, 20);
+		comboBoxSubApps.setBounds(150, 60, 144, 20);
 		comboBoxSubApps.setSelectedIndex(0);
 		//System.out.println(comboBoxApps.getSelectedItem());
 		panelListaSubApps.add(comboBoxSubApps);
@@ -155,9 +155,13 @@ public class VentanaSwing extends JFrame {
 		
 		//Panel Parametros
 		JPanel panelListaParametros = new JPanel();
-		panelListaParametros.setLayout(new FlowLayout());
+		panelListaParametros.setLayout(new BorderLayout());
 		JLabel label = new JLabel("Parámetros:");
-		panelListaParametros.add(label);
+		panelListaParametros.add(label, BorderLayout.NORTH);
+		JPanel subPanelListaParametros = new JPanel();
+		subPanelListaParametros.setLayout(new FlowLayout());
+		panelListaParametros.add(subPanelListaParametros,  BorderLayout.CENTER);
+		//label.setBounds(25, 110, 100, 20);
 		String auxS;
 		int auxInt = 110;
 
@@ -165,9 +169,9 @@ public class VentanaSwing extends JFrame {
 			 auxS = parametros.get(i).getValor();
 			 auxInt = auxInt + 50;
 			 JLabel labelAux = new JLabel(auxS);
-			 panelListaParametros.add(labelAux);
+			 subPanelListaParametros.add(labelAux);
 			 JTextField texto = new JTextField(20);
-			 panelListaParametros.add(texto);
+			 subPanelListaParametros.add(texto);
 			 setJTexFieldChanged(texto);
 			 ValidadorParametro validador = new ValidadorParametro(texto, parametros.get(i));
 			 validadores.add(validador);
@@ -296,5 +300,5 @@ public class VentanaSwing extends JFrame {
 		 refPath = panelPath;
 		 contentPane.add(refPath);	
 	}
-   
+ 
 }

@@ -1,4 +1,5 @@
 <Aplicaciones>
+	<Aplicacion herramienta="Elegir aplicacion"/>
 	<Aplicacion herramienta="FFmpeg">
 		<SubApp nombre="Audio from video"
 				usoReal="-i">
@@ -9,11 +10,64 @@
 						contenido="Audio Destino: nombre y extensión"
 						tipo="obligatorio" />
 		</SubApp>
-		<SubApp nombre="info"
+		<SubApp nombre="Video to video"
 				usoReal="-i">
 			<Parametro 	prefijo=""
-						contenido="Origen: nombre y extensión"
-						tipo="obligatorio" />
+						contenido="Video Origen: nombre y extensión"
+						tipo="obligatorio"/>
+			<Parametro 	prefijo="-ab"
+						contenido="Audio bitrate"
+						tipo="obligatorio"/>
+			<Parametro 	prefijo="-ar"
+						contenido="Audio frequency"
+						tipo="obligatorio"/>
+			<Parametro 	prefijo="-r"
+						contenido="Frames per second"
+						tipo="obligatorio"
+						cotaMin="1" 
+						cotaMax="2"/>
+			<Parametro 	prefijo="-s"
+						contenido="Resolution (ancho x alto) "
+						tipo="obligatorio"/>
+			<Parametro 	prefijo=""
+						contenido="Video Destino: nombre y extensión"
+						tipo="obligatorio"/>																														
+		</SubApp>
+		<SubApp nombre="Audio/Video cutter"
+				usoReal="-i">
+			<Parametro 	prefijo=""
+						contenido="A/V Origen: nombre y extensión"
+						tipo="obligatorio"/>
+			<Parametro 	prefijo="-t"
+						contenido="Duracion deseada (segundos)"
+						tipo="obligatorio"/>
+			<Parametro 	prefijo="-ss"
+						contenido="Offset (segundos)"
+						tipo="obligatorio"/>
+			<Parametro 	prefijo=""
+						contenido="A/V Destino: nombre y extensión"
+						tipo="obligatorio"/>																														
+		</SubApp>
+		<SubApp nombre="Mute video"
+				usoReal="-i">
+			<Parametro 	prefijo=""
+						contenido="Video Origen: nombre y extensión"
+						tipo="obligatorio"/>
+			<Parametro 	prefijo="-an"
+						contenido="Video Destino: nombre y extensión"
+						tipo="obligatorio"/>																													
+		</SubApp>
+		<SubApp nombre="Unir video con audio"
+				usoReal="-i">
+			<Parametro 	prefijo=""
+						contenido="Video Mudo: nombre y extensión"
+						tipo="obligatorio"/>
+			<Parametro 	prefijo="-i"
+						contenido="Audio: Origen nombre y extensión"
+						tipo="obligatorio"/>
+			<Parametro 	prefijo=""
+						contenido="Video Final: Origen nombre y extensión"
+						tipo="obligatorio"/>																													
 		</SubApp>
 	</Aplicacion>
 	<Aplicacion herramienta="shutdown">
@@ -28,22 +82,16 @@
 		</SubApp>
 	</Aplicacion>
 	<Aplicacion herramienta="exiftool">
-		<SubApp nombre="exiftoolSub1"
-				usoReal="unUsoReal">
-			<Parametro 	prefijo="unPrefijo"
-						contenido="exiftoolParam1"
-						tipo="obligatorio" />
-			<Parametro 	prefijo="unPrefijo"
-						contenido="exiftoolParam2"
+		<SubApp nombre="Ver Metadata"
+				usoReal="">
+			<Parametro 	prefijo=""
+						contenido="Imagen y extensión"
 						tipo="obligatorio" />
 		</SubApp>
-		<SubApp nombre="exiftoolSub2"
-				usoReal="unUsoReal">
-			<Parametro 	prefijo="unPrefijo"
-						contenido="exiftoolParam3"
-						tipo="obligatorio" />
-			<Parametro 	prefijo="unPrefijo"
-						contenido="exiftoolParam4"
+		<SubApp nombre="Borrar Metadata"
+				usoReal="-all=">
+			<Parametro 	prefijo=""
+						contenido="Imagen y extensión"
 						tipo="obligatorio" />
 		</SubApp>
 	</Aplicacion>

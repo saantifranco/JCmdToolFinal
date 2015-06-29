@@ -23,7 +23,7 @@ public class ValidadorParametro {
 			 return parametro.validarContenido(texto.getText());
 		} 
 		catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Parametro "+parametro.getValor()+" no válido.");
+			JOptionPane.showMessageDialog(null, "Parámetro "+parametro.getValor()+" no válido.");
 			//e.printStackTrace();
 		}
 		return null;
