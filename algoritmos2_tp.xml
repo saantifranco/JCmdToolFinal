@@ -1,19 +1,16 @@
 <Aplicaciones>
-	<Aplicacion herramienta="ffmpeg">
-		<SubApp nombre="ffmpegSub1">
-			<Parametro 	prefijo="unPrefijo"
-						contenido="fmmpegParam1"
+	<Aplicacion herramienta="FFmpeg">
+		<SubApp nombre="-i">
+			<Parametro 	prefijo=""
+						contenido="Video Origen: nombre y extensión"
 						tipo="obligatorio" />
-			<Parametro 	prefijo="unPrefijo"
-						contenido="fmmpegParam2"
+			<Parametro 	prefijo=""
+						contenido="Audio Destino: nombre y extensión"
 						tipo="obligatorio" />
 		</SubApp>
-		<SubApp nombre="ffmpegSub2">
-			<Parametro 	prefijo="unPrefijo"
-						contenido="fmmpegParam3"
-						tipo="obligatorio" />
-			<Parametro 	prefijo="unPrefijo"
-						contenido="fmmpegParam4"
+		<SubApp nombre="-i2">
+			<Parametro 	prefijo=""
+						contenido="Origen: nombre y extensión"
 						tipo="obligatorio" />
 		</SubApp>
 	</Aplicacion>
@@ -67,7 +64,7 @@
 			<Parametro 	prefijo="unPrefijo"
 						contenido="nombre_rama"
 						tipo="obligatorio" />
-			<Parametro  prefijo="unPrefijo"
+			<Parametro  prefijo="-m"
 						contenido="mensaje" 
 						tipo="opcional" 
 						cotaMin="0"

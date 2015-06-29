@@ -68,7 +68,7 @@ public class VentanaSwing extends JFrame {
 	public VentanaSwing() {
 		super("JCmdTool: Java Command Tool");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 300);
+		setBounds(100, 100, 800, 600);
 		
 		parser.setHandler(handler);
 	    parser.parsearXml("algoritmos2_tp.xml");

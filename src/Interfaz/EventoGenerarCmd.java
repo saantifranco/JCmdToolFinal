@@ -24,7 +24,11 @@ public class EventoGenerarCmd implements ActionListener{
 		Runtime cmd = Runtime.getRuntime();
 		try
 		{
-			Process process = cmd.exec(comando);
+			Process process = cmd.exec("cmd.exe");
+			//Process process = cmd.exec("cmd.exe /c start cmd");
+			process= cmd.exec(comando);
+			process = cmd.exec("exit");
+			
 			BufferedReader read = new BufferedReader(new InputStreamReader(process.getInputStream()));
 			
 			textAreaSalida.setText("");
@@ -43,7 +47,7 @@ public class EventoGenerarCmd implements ActionListener{
 	
 	//@Override
 	public void actionPerformed2(ActionEvent e) {
-		JOptionPane.showMessageDialog(null, "Comando final : " + comando);
+		JOptionPane.showMessageDialog(null, "Comando final: " + comando);
 		System.out.println("Comando final: " + comando);
 	}
 }
