@@ -29,6 +29,7 @@ public class EventoSubAplicaciones implements ItemListener {
 		//Agarro la App elegida para usarla
 		ventana.reiniciarComandoParcial();
 		ventana.reiniciarValidadores();
+		ventana.removerBotonComando();
 		Aplicacion appElegida = new Aplicacion();
 		String nombreAppElegida = (String) comboBoxApps.getSelectedItem();
 

@@ -71,7 +71,7 @@ public class VentanaSwing extends JFrame {
 	public VentanaSwing() {
 		super("JCmdTool: Java Command Tool");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		setBounds(100, 100, 800, 800);
 		parser.setHandler(handler);
 	    parser.parsearXml("algoritmos2_tp.xml");
 	    List<Aplicacion> apps = new ArrayList<Aplicacion>();
@@ -88,6 +88,8 @@ public class VentanaSwing extends JFrame {
 		contentPane.add(refPanelListaParametros, 2);
 		JTextArea textArea = new JTextArea();
 		refTextArea = textArea;
+		
+		
 		contentPane.add(refTextArea);
 		
 		this.generarPanelAplicaciones(apps);
@@ -299,6 +301,11 @@ public class VentanaSwing extends JFrame {
 		 panelPath.add(texto);
 		 refPath = panelPath;
 		 contentPane.add(refPath);	
+	}
+
+	public void removerBotonComando() {
+		contentPane.remove(refBotonComando);
+		
 	}
  
 }

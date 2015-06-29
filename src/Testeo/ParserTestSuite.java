@@ -25,7 +25,7 @@ public class ParserTestSuite {
 		
 	    parser.parsearXml("algoritmos2_tp.xml");
 
-	    assertEquals(handler.getContenidoXml().size(), 4);
+	    assertEquals(handler.getContenidoXml().size(), 6);
 	  }
 	
 	@Test
@@ -37,15 +37,19 @@ public class ParserTestSuite {
 		
 	    parser.parsearXml("algoritmos2_tp.xml");
 		
-	    assertEquals(handler.getContenidoXml().size(), 4);
+	    assertEquals(handler.getContenidoXml().size(), 6);
 	    assertEquals(handler.getContenidoXml().get(0).getTipoTag(), "Aplicacion");
-	    assertEquals(handler.getContenidoXml().get(0).getValor(), "ffmpeg");
+	    assertEquals(handler.getContenidoXml().get(0).getValor(), "Elegir aplicacion");
 	    assertEquals(handler.getContenidoXml().get(1).getTipoTag(), "Aplicacion");
-	    assertEquals(handler.getContenidoXml().get(1).getValor(), "exiftool");
+	    assertEquals(handler.getContenidoXml().get(1).getValor(), "FFmpeg");
 	    assertEquals(handler.getContenidoXml().get(2).getTipoTag(), "Aplicacion");
-	    assertEquals(handler.getContenidoXml().get(2).getValor(), "virtualdub");
+	    assertEquals(handler.getContenidoXml().get(2).getValor(), "shutdown");
 	    assertEquals(handler.getContenidoXml().get(3).getTipoTag(), "Aplicacion");
-	    assertEquals(handler.getContenidoXml().get(3).getValor(), "git");
+	    assertEquals(handler.getContenidoXml().get(3).getValor(), "exiftool");
+	    assertEquals(handler.getContenidoXml().get(4).getTipoTag(), "Aplicacion");
+	    assertEquals(handler.getContenidoXml().get(4).getValor(), "virtualdub");
+	    assertEquals(handler.getContenidoXml().get(5).getTipoTag(), "Aplicacion");
+	    assertEquals(handler.getContenidoXml().get(5).getValor(), "git");
 	  }
 	
 	@Test
@@ -60,7 +64,7 @@ public class ParserTestSuite {
 		List<Parametro> parametros = new ArrayList<Parametro>();
 		
 	    parser.parsearXml("algoritmos2_tp.xml");
-	    aplicacion = handler.getContenidoXml().get(3);
+	    aplicacion = handler.getContenidoXml().get(5);
 	    subApps = aplicacion.getSubAplicacioes();
 	    subApp = subApps.get(1);	
 	    parametros = subApp.getParametros();

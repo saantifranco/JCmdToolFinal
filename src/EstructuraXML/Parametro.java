@@ -41,7 +41,7 @@ public class Parametro extends Tag {
 	}
 	
 	public Boolean validarContenido(String unValor){
-		System.out.println(unValor.length());
+		//System.out.println(unValor.length());
 		if((unValor.length() >= cotaMin && unValor.length() <= cotaMax) || cotaMin == cotaMax){
 			if(tipoValidacion != "obligatorio") return true;
 			else;
