@@ -1,6 +1,7 @@
 <Aplicaciones>
 	<Aplicacion herramienta="FFmpeg">
-		<SubApp nombre="-i">
+		<SubApp nombre="Audio from video"
+				usoReal="-i">
 			<Parametro 	prefijo=""
 						contenido="Video Origen: nombre y extensión"
 						tipo="obligatorio" />
@@ -8,23 +9,27 @@
 						contenido="Audio Destino: nombre y extensión"
 						tipo="obligatorio" />
 		</SubApp>
-		<SubApp nombre="-i2">
+		<SubApp nombre="info"
+				usoReal="-i">
 			<Parametro 	prefijo=""
 						contenido="Origen: nombre y extensión"
 						tipo="obligatorio" />
 		</SubApp>
 	</Aplicacion>
 	<Aplicacion herramienta="shutdown">
-		<SubApp nombre="-s">
+		<SubApp nombre="apagado"
+				usoReal="-s">
 			<Parametro 	prefijo="-t"
 						contenido="Segundos apagado"
 						tipo="obligatorio" />
 		</SubApp>
-		<SubApp nombre="-a">
+		<SubApp nombre="cancelar apagado"
+				usoReal="-a">
 		</SubApp>
 	</Aplicacion>
 	<Aplicacion herramienta="exiftool">
-		<SubApp nombre="exiftoolSub1">
+		<SubApp nombre="exiftoolSub1"
+				usoReal="unUsoReal">
 			<Parametro 	prefijo="unPrefijo"
 						contenido="exiftoolParam1"
 						tipo="obligatorio" />
@@ -32,7 +37,8 @@
 						contenido="exiftoolParam2"
 						tipo="obligatorio" />
 		</SubApp>
-		<SubApp nombre="exiftoolSub2">
+		<SubApp nombre="exiftoolSub2"
+				usoReal="unUsoReal">
 			<Parametro 	prefijo="unPrefijo"
 						contenido="exiftoolParam3"
 						tipo="obligatorio" />
@@ -42,7 +48,8 @@
 		</SubApp>
 	</Aplicacion>
 	<Aplicacion herramienta="virtualdub">
-		<SubApp nombre="virtualdubSub1">
+		<SubApp nombre="virtualdubSub1"
+				usoReal="unUsoReal">
 			<Parametro 	prefijo="unPrefijo"
 						contenido="virtualdubParam1"
 						tipo="obligatorio" />
@@ -50,7 +57,8 @@
 						contenido="virtualdubParam2"
 						tipo="obligatorio" />
 		</SubApp>
-		<SubApp nombre="virtualdubSub2">
+		<SubApp nombre="virtualdubSub2"
+				usoReal="unUsoReal">
 			<Parametro 	prefijo="unPrefijo"
 						contenido="virtualdubParam3"
 						tipo="obligatorio" />
@@ -60,7 +68,8 @@
 		</SubApp>
 	</Aplicacion>
 	<Aplicacion herramienta="git">
-		<SubApp nombre="commit">
+		<SubApp nombre="commit"
+				usoReal="commit">
 			<Parametro 	prefijo="unPrefijo"
 						contenido="nombre_rama"
 						tipo="obligatorio" />
@@ -70,7 +79,8 @@
 						cotaMin="0"
 						cotaMax="250" />
 		</SubApp>
-		<SubApp nombre="push">
+		<SubApp nombre="push"
+				usoReal="push">
 			<Parametro 	prefijo="unPrefijo"
 						contenido="nombre_rama"
 						tipo="obligatorio" />
@@ -91,7 +101,8 @@
 		</SubApp>
 		<SubApp nombre="pull" />
 		<SubApp nombre="add" />
-		<SubApp nombre="revert">
+		<SubApp nombre="revert"
+				usoReal="revert">
 			<Parametro 	prefijo="unPrefijo"
 						contenido="hash_commit" 
 						tipo="obligatorio" />

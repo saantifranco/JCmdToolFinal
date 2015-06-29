@@ -40,7 +40,9 @@ public class VentanaSwing extends JFrame {
 	JButton refBotonContinue = new JButton("Validar");
 	JButton refBotonComando = new JButton("Generar comando");
 	JTextArea refTextArea = new JTextArea();
+	JPanel refPath = new JPanel();
 	String comandoParcial = new String("");
+	String usoRealSubApp = new String("");
 	Parser parser = new Parser();
 	CPoolXMLHandler handler = new CPoolXMLHandler();
 	List<ValidadorParametro> validadores= new ArrayList<ValidadorParametro>();
@@ -146,6 +148,7 @@ public class VentanaSwing extends JFrame {
 	
 
 	public void generarPanelParametros(SubAplicacion subAppElegida, String nombreSubAppElegida) {
+		usoRealSubApp = subAppElegida.getUsoReal();
 		contentPane.remove(refPanelListaParametros);
 		List<Parametro> parametros = new ArrayList<Parametro>();
 		parametros = subAppElegida.getParametros();
@@ -178,7 +181,7 @@ public class VentanaSwing extends JFrame {
 	public void generarBotonCmd(){
 		contentPane.remove(refBotonComando);
 		JButton botonComando = new JButton("Generar comando");
-		botonComando.addActionListener(new EventoGenerarCmd(this.generarCmd(), refTextArea));
+		botonComando.addActionListener(new EventoGenerarCmd(this.generarCmd(), refTextArea, contentPane, refPath.getComponent(1)));
 		refBotonComando = botonComando;
 		contentPane.add(refBotonComando);
 		contentPane.updateUI();
@@ -196,7 +199,8 @@ public class VentanaSwing extends JFrame {
 	public String generarCmd() {
 		String comandoAux;
 		comandoAux = (String) ((JComboBox<String>) refPanelListaApps.getComponent(1)).getSelectedItem();
-		comandoAux = comandoAux+" "+(String) ((JComboBox<String>) refPanelListaSubApps.getComponent(1)).getSelectedItem();
+		comandoAux = comandoAux+" "+usoRealSubApp;
+		//comandoAux = comandoAux+" "+(String) ((JComboBox<String>) refPanelListaSubApps.getComponent(1)).getSelectedItem();
 		//System.out.println("EL cmd parcial: "+comandoAux+comandoParcial );
 		contentPane.updateUI();
 		return comandoAux+comandoParcial;
@@ -280,6 +284,17 @@ public class VentanaSwing extends JFrame {
 
 	public Component getRefBotonComando() {
 		return this.refBotonComando;
+	}
+
+	public void agregarCuadoPath() {
+		 JPanel panelPath = new JPanel();
+		 contentPane.remove(refPath);
+		 JLabel labelAux = new JLabel("Path archivos");
+		 panelPath.add(labelAux);
+		 JTextField texto = new JTextField(30);
+		 panelPath.add(texto);
+		 refPath = panelPath;
+		 contentPane.add(refPath);	
 	}
    
 }

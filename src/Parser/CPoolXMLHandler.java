@@ -68,8 +68,13 @@ public class CPoolXMLHandler extends DefaultHandler {
 			subAplicacion = new SubAplicacion();
 			for(int i=0; i<attributes.getLength(); i++) // Persistencia
 			{
-				//tagCompuesto.setNombre(attributes.getQName(i));
 				subAplicacion.setValor(attributes.getValue(i));
+				if(attributes.getQName(i+1) == "usoReal") {
+					subAplicacion.setUsoReal(attributes.getValue(i+1));
+					i++;
+				}
+				//tagCompuesto.setNombre(attributes.getQName(i));
+				//subAplicacion.setValor(attributes.getValue(i));
 				/*if(attributes.getQName(i+1) == "usoReal") {
 					subAplicacion.setUsoReal(attributes.getValue(i+1));
 					i++;

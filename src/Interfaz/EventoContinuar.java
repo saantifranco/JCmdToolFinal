@@ -20,8 +20,10 @@ public class EventoContinuar implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		if(ventana.tieneParametrosValidos())
+		if(ventana.tieneParametrosValidos()){
+			ventana.agregarCuadoPath();
 			ventana.generarBotonCmd();
+		}
 		else {
 			cp.remove(ventana.getRefBotonComando());
 			return;
