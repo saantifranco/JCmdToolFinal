@@ -84,7 +84,7 @@ public class Ventana extends JFrame {
 	public Ventana() {
 		super("JCmdTool: Java Command Tool");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 600);
+		setBounds(100, 100, 450, 700);
 		
 		parser.setHandler(handler);
 	    parser.parsearXml("algoritmos2_tp.xml");
@@ -208,17 +208,19 @@ public class Ventana extends JFrame {
 				try
 				{
 					Process process= cmd.exec(generarCmd());
-					System.out.println(generarCmd());
-					process = cmd.exec("exit");
+					System.out.println("cmd /c " +generarCmd());
+					//process = cmd.exec("exit");
 					
 					InputStreamReader entrada = new InputStreamReader(process.getInputStream());
+					System.out.println(process.getInputStream());
 					BufferedReader read = new BufferedReader(entrada);
-					
-					//textAreaSalida.setText("");
-					
+					textArea.setVisible(true);
+					textArea.setText("");
+					//VentanaEmergente ve = new VentanaEmergente();
 					while((linea = read.readLine()) != null){
-						//textAreaSalida.append(linea+"\n");
+						textArea.append(linea+"\n");
 						System.out.println(linea+"\n");
+						//ve.agregarTexto(linea);
 						contentPane.updateUI();
 					}
 				}
@@ -233,7 +235,7 @@ public class Ventana extends JFrame {
 		
 		contentPane.add(btnEjecutar);
 		
-		textArea.setBounds(135, 503, 272, 48);
+		textArea.setBounds(135, 503, 272, 148);
 		contentPane.add(textArea);
 		textArea.setVisible(false);
 	}
