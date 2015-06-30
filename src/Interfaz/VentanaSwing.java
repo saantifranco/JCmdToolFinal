@@ -81,11 +81,14 @@ public class VentanaSwing extends JFrame {
 	    //Container contentPane = getContentPane();
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new GridLayout(4, 1));
+		contentPane.setLayout(new GridLayout(7, 2));
 		setContentPane(contentPane);
 		contentPane.add(refPanelListaApps, 0);
+		contentPane.setBorder(new BevelBorder(BevelBorder.LOWERED,null,null,null,null));
 		contentPane.add(refPanelListaSubApps, 1);
+		contentPane.setBorder(new BevelBorder(BevelBorder.LOWERED,null,null,null,null));
 		contentPane.add(refPanelListaParametros, 2);
+		contentPane.setBorder(new BevelBorder(BevelBorder.LOWERED,null,null,null,null));
 		JTextArea textArea = new JTextArea();
 		refTextArea = textArea;
 		
@@ -119,6 +122,7 @@ public class VentanaSwing extends JFrame {
 		 comboBoxApps.addItemListener(new EventoSubAplicaciones(this, apps, comboBoxApps));
 		 refPanelListaApps = panelListaApps;
 		 contentPane.add(refPanelListaApps, 0); 
+		 contentPane.setBorder(new BevelBorder(BevelBorder.LOWERED,null,null,null,null));
 		 contentPane.updateUI();
 
 	}
@@ -145,6 +149,7 @@ public class VentanaSwing extends JFrame {
 		comboBoxSubApps.addItemListener(new EventoParametros(this, appElegida, comboBoxSubApps));
 		refPanelListaSubApps = panelListaSubApps;
 		contentPane.add(panelListaSubApps, 1);
+		contentPane.setBorder(new BevelBorder(BevelBorder.LOWERED,null,null,null,null));
 		contentPane.updateUI();
 	}
 	
@@ -181,6 +186,7 @@ public class VentanaSwing extends JFrame {
 		this.generarBotonContinue();
 		refPanelListaParametros = panelListaParametros;
 		contentPane.add(panelListaParametros, 2);
+		contentPane.setBorder(new BevelBorder(BevelBorder.LOWERED,null,null,null,null));
 		contentPane.updateUI();
 	}
 	
@@ -190,6 +196,7 @@ public class VentanaSwing extends JFrame {
 		botonComando.addActionListener(new EventoGenerarCmd(this.generarCmd(), refTextArea, contentPane, refPath.getComponent(1)));
 		refBotonComando = botonComando;
 		contentPane.add(refBotonComando);
+		contentPane.setBorder(new BevelBorder(BevelBorder.LOWERED,null,null,null,null));
 		contentPane.updateUI();
 	}
 	
@@ -199,6 +206,7 @@ public class VentanaSwing extends JFrame {
 		botonContinue.addActionListener(new EventoContinuar(this, contentPane));
 		refBotonContinue = botonContinue;
 		contentPane.add(refBotonContinue);
+		contentPane.setBorder(new BevelBorder(BevelBorder.LOWERED,null,null,null,null));
 		contentPane.updateUI();
 	}
 
@@ -300,7 +308,9 @@ public class VentanaSwing extends JFrame {
 		 JTextField texto = new JTextField(30);
 		 panelPath.add(texto);
 		 refPath = panelPath;
+		 contentPane.setBorder(new BevelBorder(BevelBorder.LOWERED,null,null,null,null));
 		 contentPane.add(refPath);	
+		 contentPane.updateUI();
 	}
 
 	public void removerBotonComando() {
