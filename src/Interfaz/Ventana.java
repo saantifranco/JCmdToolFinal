@@ -7,7 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -22,6 +21,8 @@ import Parser.Parser;
 
 import java.awt.event.ContainerAdapter;
 import java.awt.event.ContainerEvent;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -55,6 +56,7 @@ public class Ventana extends JFrame {
 	JButton btnValidarCampos = new JButton("Validar campos");
 	JButton btnGenerarComando = new JButton("Generar comando");
 	JTextField textField = new JTextField();
+	JTextArea textArea = new JTextArea();
 	private JTextField textField_1;
 	private final JButton btnEjecutar = new JButton("Ejecutar");
 	JComboBox<String> comboBox = new JComboBox<String>();
@@ -107,25 +109,9 @@ public class Ventana extends JFrame {
 			 aplicaciones.addElement(apps.get(i).getValor());
 		}
 		comboBox = new JComboBox<String>(aplicaciones);
-		comboBox.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent arg0) {
-				Aplicacion appElegida = new Aplicacion();
-				String nombreAppElegida = (String) comboBox.getSelectedItem();
-				generarBotonValidar();
-				reiniciarComandoParcial();
-				for(int i = 0; i < apps.size(); i++){
-					if(apps.get(i).getValor() == nombreAppElegida)
-						appElegida = apps.get(i);
-				}
-				 
-				if(appElegida.getSubAplicacioes().size()>0){
-					generarPanelSubapps(appElegida);
-				}
-				else return;
-			}
-		});
-		/*comboBox.addActionListener(new ActionListener() {
+		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				reiniciarComandoParcial();
 				Aplicacion appElegida = new Aplicacion();
 				String nombreAppElegida = (String) comboBox.getSelectedItem();
 
@@ -139,7 +125,7 @@ public class Ventana extends JFrame {
 				}
 				else return;
 			}
-		});*/
+		});
 		comboBox.setBounds(132, 8, 255, 20);
 		panel.add(comboBox);
 		
@@ -164,8 +150,29 @@ public class Ventana extends JFrame {
 		panel_3.setBounds(10, 36, 387, 217);
 		panel_2.add(panel_3);
 		panel_3.setLayout(null);
-
-		this.generarBotonValidar();
+		btnValidarCampos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(tieneParametrosValidos()){
+					btnGenerarComando.setVisible(true);
+				}
+			}
+		});
+		
+		btnValidarCampos.setBounds(50, 367, 142, 23);
+		btnValidarCampos.setVisible(false);
+		contentPane.add(btnValidarCampos);
+		btnGenerarComando.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panel_5.setVisible(true);
+				textField.setText(generarCmd());
+				panel_6.setVisible(true);
+				btnEjecutar.setVisible(true);
+			}
+		});
+		
+		btnGenerarComando.setBounds(221, 367, 167, 23);
+		btnGenerarComando.setVisible(false);
+		contentPane.add(btnGenerarComando);
 		
 		panel_5.setBounds(10, 401, 397, 49);
 		contentPane.add(panel_5);
@@ -193,50 +200,47 @@ public class Ventana extends JFrame {
 		textField_1.setBounds(78, 8, 292, 20);
 		panel_6.add(textField_1);
 		textField_1.setColumns(10);
-		btnEjecutar.setBounds(162, 503, 89, 37);
+		btnEjecutar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+	
+				Runtime cmd = Runtime.getRuntime();
+				String linea = null;
+				try
+				{
+					Process process= cmd.exec(generarCmd());
+					System.out.println(generarCmd());
+					process = cmd.exec("exit");
+					
+					InputStreamReader entrada = new InputStreamReader(process.getInputStream());
+					BufferedReader read = new BufferedReader(entrada);
+					
+					//textAreaSalida.setText("");
+					
+					while((linea = read.readLine()) != null){
+						//textAreaSalida.append(linea+"\n");
+						System.out.println(linea+"\n");
+						contentPane.updateUI();
+					}
+				}
+				catch(Exception ex)
+				{
+					JOptionPane.showMessageDialog(null, ex.getMessage());
+				}
+			}
+		});
+		btnEjecutar.setBounds(20, 503, 89, 37);
 		btnEjecutar.setVisible(false);
 		
 		contentPane.add(btnEjecutar);
+		
+		textArea.setBounds(135, 503, 272, 48);
+		contentPane.add(textArea);
+		textArea.setVisible(false);
 	}
 	
-	private void generarBotonValidar() {
-		contentPane.remove(btnGenerarComando);
-		btnValidarCampos = new JButton("Validar campos");
-		btnValidarCampos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(tieneParametrosValidos()){
-					//agregarCuadroPath();
-					btnGenerarComando.setVisible(true);
-					//generarBotonCmd();
-				}
-				/*else {
-					cp.remove(ventana.getRefBotonComando());
-					return;
-				}*/
-			}
-		});
-		
-		btnValidarCampos.setBounds(50, 367, 142, 23);
-		btnValidarCampos.setVisible(false);
-		contentPane.add(btnValidarCampos);
-		btnGenerarComando.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				panel_5.setVisible(true);
-				textField.setText(generarCmd(comboBox));
-				panel_6.setVisible(true);
-				btnEjecutar.setVisible(true);
-			}
-		});
-		
-		btnGenerarComando.setBounds(221, 367, 167, 23);
-		btnGenerarComando.setVisible(false);
-		contentPane.add(btnGenerarComando);
-		
-	}
-
 	public void generarPanelSubapps(Aplicacion appElegida){
-		panel_1.remove(comboBox_1);
 		panel_1.setVisible(true);
+		panel_1.remove(comboBox_1);
 		Vector<String> subApps = new Vector<String>();
 		subApps.addElement("Elegir comando");
 		for(int i = 0; i < appElegida.getSubAplicacioes().size(); i++){
@@ -246,12 +250,14 @@ public class Ventana extends JFrame {
 		comboBox_1.setBounds(132, 20, 255, 20);
 		panel_1.add(comboBox_1);
 		
+		
 		comboBox_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				reiniciarComandoParcial();
+				
 				SubAplicacion subAppElegida = new SubAplicacion();
 				String nombreSubAppElegida = (String) comboBox_1.getSelectedItem();
-				generarBotonValidar();
-				reiniciarComandoParcial();
+				
 				for(int i = 0; i < appElegida.getSubAplicacioes().size(); i++){
 					if(appElegida.getSubAplicacioes().get(i).getValor() == nombreSubAppElegida)
 						subAppElegida = appElegida.getSubAplicacioes().get(i);
@@ -272,6 +278,7 @@ public class Ventana extends JFrame {
 		String auxS;
 		int auxInt = 31;
 		
+		validadores= new ArrayList<ValidadorParametro>();
 		for(int i = 0; i < parametros.size(); i++){
 			auxS = parametros.get(i).getValor();
 			auxInt = auxInt + 25;
@@ -289,7 +296,7 @@ public class Ventana extends JFrame {
 		contentPane.updateUI();
 	}
 	
-	public String generarCmd(JComboBox comboBox) {
+	public String generarCmd() {
 		String comandoAux;
 		comandoAux = (String) comboBox.getSelectedItem();
 		comandoAux = comandoAux+" "+usoRealSubApp;
@@ -368,7 +375,4 @@ public class Ventana extends JFrame {
     public void reiniciarComandoParcial() {
 		comandoParcial = new String("");
 	}
-    
-
 }
-

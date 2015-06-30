@@ -38,7 +38,10 @@ public class EventoGenerarCmd implements ActionListener{
 			//Process process = cmd.exec("cmd.exe /c start cmd");
 			//Process process = cmd.exec("cmd.exe /c start cd");
 			//Process process = cmd.exec("cmd.exe /c c:\\Usuarios\\Santiago\\desktop");
+			//Process process = cmd.exec("cd c:\\");
+			//process = cmd.exec("cd c:\\Usuarios\\Santiago\\desktop");
 			Process process= cmd.exec(comando);
+			System.out.println(comando);
 			process = cmd.exec("exit");
 			//cmd.exit(2);
 			
