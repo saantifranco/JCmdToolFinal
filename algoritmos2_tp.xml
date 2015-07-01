@@ -4,16 +4,16 @@
 		<SubApp nombre="Audio from video"
 				usoReal="-i">
 			<Parametro 	prefijo=""
-						contenido="Video Origen: nombre y extensión"
+						contenido="Origen: nombre y ext"
 						tipo="obligatorio" />
 			<Parametro 	prefijo=""
-						contenido="Audio Destino: nombre y extensión"
+						contenido="Destino: nombre y ext"
 						tipo="obligatorio" />
 		</SubApp>
 		<SubApp nombre="Video to video"
 				usoReal="-i">
 			<Parametro 	prefijo=""
-						contenido="Video Origen: nombre y extensión"
+						contenido="Origen: nombre y ext"
 						tipo="obligatorio"/>
 			<Parametro 	prefijo="-ab"
 						contenido="Audio bitrate"
@@ -27,46 +27,50 @@
 						cotaMin="1" 
 						cotaMax="2"/>
 			<Parametro 	prefijo="-s"
-						contenido="Resolution (ancho x alto) "
+						contenido="Resolution (anchoXalto)"
 						tipo="obligatorio"/>
 			<Parametro 	prefijo=""
-						contenido="Video Destino: nombre y extensión"
+						contenido="Destino: nombre y ext"
 						tipo="obligatorio"/>																														
 		</SubApp>
 		<SubApp nombre="Audio/Video cutter"
 				usoReal="-i">
 			<Parametro 	prefijo=""
-						contenido="A/V Origen: nombre y extensión"
+						contenido="Origen: nombre y ext"
 						tipo="obligatorio"/>
 			<Parametro 	prefijo="-t"
-						contenido="Duracion deseada (segundos)"
-						tipo="obligatorio"/>
+						contenido="Duracion (segs)"
+						tipo="obligatorio"
+						cotaMin="0"
+						cotaMax="6"/>
 			<Parametro 	prefijo="-ss"
-						contenido="Offset (segundos)"
-						tipo="obligatorio"/>
+						contenido="Offset (segs)"
+						tipo="obligatorio"
+						cotaMin="0"
+						cotaMax="6"/>
 			<Parametro 	prefijo=""
-						contenido="A/V Destino: nombre y extensión"
+						contenido="Destino: nombre y ext"
 						tipo="obligatorio"/>																														
 		</SubApp>
 		<SubApp nombre="Mute video"
 				usoReal="-i">
 			<Parametro 	prefijo=""
-						contenido="Video Origen: nombre y extensión"
+						contenido="Origen: nombre y ext"
 						tipo="obligatorio"/>
 			<Parametro 	prefijo="-an"
-						contenido="Video Destino: nombre y extensión"
+						contenido="Destino: nombre y ext"
 						tipo="obligatorio"/>																													
 		</SubApp>
 		<SubApp nombre="Unir video con audio"
 				usoReal="-i">
 			<Parametro 	prefijo=""
-						contenido="Video Mudo: nombre y extensión"
+						contenido="Video Mudo: nn y ext"
 						tipo="obligatorio"/>
 			<Parametro 	prefijo="-i"
-						contenido="Audio: Origen nombre y extensión"
+						contenido="Audio: nombre y ext"
 						tipo="obligatorio"/>
 			<Parametro 	prefijo=""
-						contenido="Video Final: Origen nombre y extensión"
+						contenido="Video c/audio: nn y ext"
 						tipo="obligatorio"/>																													
 		</SubApp>
 	</Aplicacion>
@@ -75,7 +79,9 @@
 				usoReal="-s">
 			<Parametro 	prefijo="-t"
 						contenido="Segundos apagado"
-						tipo="obligatorio" />
+						tipo="obligatorio"
+						cotaMin="2"
+						cotaMax="6"/>
 		</SubApp>
 		<SubApp nombre="cancelar apagado"
 				usoReal="-a">
@@ -86,74 +92,85 @@
 				usoReal="">
 			<Parametro 	prefijo=""
 						contenido="Imagen y extensión"
-						tipo="obligatorio" />
+						tipo="obligatorio"/>
 		</SubApp>
 		<SubApp nombre="Borrar Metadata"
 				usoReal="-all=">
 			<Parametro 	prefijo=""
 						contenido="Imagen y extensión"
-						tipo="obligatorio" />
-		</SubApp>
-	</Aplicacion>
-	<Aplicacion herramienta="virtualdub">
-		<SubApp nombre="virtualdubSub1"
-				usoReal="unUsoReal">
-			<Parametro 	prefijo="unPrefijo"
-						contenido="virtualdubParam1"
-						tipo="obligatorio" />
-			<Parametro 	prefijo="unPrefijo"
-						contenido="virtualdubParam2"
-						tipo="obligatorio" />
-		</SubApp>
-		<SubApp nombre="virtualdubSub2"
-				usoReal="unUsoReal">
-			<Parametro 	prefijo="unPrefijo"
-						contenido="virtualdubParam3"
-						tipo="obligatorio" />
-			<Parametro 	prefijo="unPrefijo"
-						contenido="virtualdubParam4"
-						tipo="obligatorio" />
+						tipo="obligatorio"/>
 		</SubApp>
 	</Aplicacion>
 	<Aplicacion herramienta="git">
+	<SubApp nombre="Config Nombre"
+				usoReal="config">
+			<Parametro 	prefijo="--global user.name"
+						contenido="Nombre usuario"
+						tipo="obligatorio"/>
+		</SubApp>
+		<SubApp nombre="Config Mail"
+				usoReal="config">
+			<Parametro 	prefijo="--global user.email"
+						contenido="Email usuario"
+						tipo="obligatorio"/>
+		</SubApp>
+		<SubApp nombre="Clonar"
+				usoReal="clone">
+			<Parametro 	prefijo=""
+						contenido="Git url"
+						tipo="obligatorio"/>
+		</SubApp>
+		<SubApp nombre="Agregar Origen"
+				usoReal="remote">
+			<Parametro  prefijo="add origin"
+						contenido="Origen" 
+						tipo="obligatorio"/>
+		</SubApp>
+		<SubApp nombre="Status" 
+				usoReal="status"/>
 		<SubApp nombre="commit"
 				usoReal="commit">
-			<Parametro 	prefijo="unPrefijo"
-						contenido="nombre_rama"
-						tipo="obligatorio" />
 			<Parametro  prefijo="-m"
 						contenido="mensaje" 
 						tipo="opcional" 
 						cotaMin="0"
-						cotaMax="250" />
+						cotaMax="250"/>
 		</SubApp>
-		<SubApp nombre="push"
+		<SubApp nombre="Pushear"
 				usoReal="push">
 			<Parametro 	prefijo="unPrefijo"
-						contenido="nombre_rama"
-						tipo="obligatorio" />
+						contenido="Rama a pushear"
+						tipo="obligatorio"/>
 			<Parametro 	prefijo="unPrefijo"
-						contenido="usuario"
-						tipo="obligatorio" />
+						contenido="Usuario"
+						tipo="obligatorio"/>
 			<Parametro 	prefijo="unPrefijo"
-						contenido="password"
+						contenido="Password"
 						tipo="obligatorio"
 						cotaMin="6" 
-						cotaMax="12" />
+						cotaMax="12"/>
 		</SubApp>
-		<SubApp nombre="fetch" />
-		<SubApp nombre="merge">
-			<Parametro	prefijo="unPrefijo"
-						contenido="nombre_rama"
+		<SubApp nombre="Merge"
+				usoReal="merge">
+			<Parametro	prefijo=""
+						contenido="Rama a mergear"
 						tipo="obligatorio" />
 		</SubApp>
-		<SubApp nombre="pull" />
-		<SubApp nombre="add" />
-		<SubApp nombre="revert"
+		<SubApp nombre="Pullear"
+				usoReal="pull origin">
+				
+		</SubApp>
+		<SubApp nombre="Add"
+				usoReal="add">
+			<Parametro	prefijo=""
+						contenido="Rama a agregar"
+						tipo="obligatorio" />
+		</SubApp>
+		<SubApp nombre="Revert commit"
 				usoReal="revert">
-			<Parametro 	prefijo="unPrefijo"
+			<Parametro 	prefijo=""
 						contenido="hash_commit" 
-						tipo="obligatorio" />
+						tipo="obligatorio"/>
 		</SubApp>
 	</Aplicacion>
 </Aplicaciones>
