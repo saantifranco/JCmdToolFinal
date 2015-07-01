@@ -75,7 +75,7 @@
 		</SubApp>
 	</Aplicacion>
 	<Aplicacion herramienta="shutdown">
-		<SubApp nombre="apagado"
+		<SubApp nombre="Apagado Simple"
 				usoReal="-s">
 			<Parametro 	prefijo="-t"
 						contenido="Segundos apagado"
@@ -83,7 +83,20 @@
 						cotaMin="2"
 						cotaMax="6"/>
 		</SubApp>
-		<SubApp nombre="cancelar apagado"
+		<SubApp nombre="Apagado c/Motivo"
+				usoReal="-s">
+			<Parametro 	prefijo="-t"
+						contenido="Segundos apagado"
+						tipo="obligatorio"
+						cotaMin="2"
+						cotaMax="6"/>
+			<Parametro 	prefijo="-c"
+						contenido="'Comentario apagado'"
+						tipo="obligatorio"
+						cotaMin="0"
+						cotaMax="250"/>
+		</SubApp>
+		<SubApp nombre="Cancelar apagado"
 				usoReal="-a">
 		</SubApp>
 	</Aplicacion>
@@ -128,13 +141,14 @@
 		</SubApp>
 		<SubApp nombre="Status" 
 				usoReal="status"/>
-		<SubApp nombre="commit"
+		<SubApp nombre="Commit"
 				usoReal="commit">
 			<Parametro  prefijo="-m"
 						contenido="mensaje" 
 						tipo="opcional" 
 						cotaMin="0"
 						cotaMax="250"/>
+			<Parametro  prefijo="-a"/>
 		</SubApp>
 		<SubApp nombre="Pushear"
 				usoReal="push">

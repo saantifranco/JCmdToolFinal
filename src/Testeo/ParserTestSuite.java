@@ -25,7 +25,7 @@ public class ParserTestSuite {
 		
 	    parser.parsearXml("algoritmos2_tp.xml");
 
-	    assertEquals(handler.getContenidoXml().size(), 6);
+	    assertEquals(handler.getContenidoXml().size(), 5);
 	  }
 	
 	@Test
@@ -37,7 +37,7 @@ public class ParserTestSuite {
 		
 	    parser.parsearXml("algoritmos2_tp.xml");
 		
-	    assertEquals(handler.getContenidoXml().size(), 6);
+	    assertEquals(handler.getContenidoXml().size(), 5);
 	    assertEquals(handler.getContenidoXml().get(0).getTipoTag(), "Aplicacion");
 	    assertEquals(handler.getContenidoXml().get(0).getValor(), "Elegir aplicacion");
 	    assertEquals(handler.getContenidoXml().get(1).getTipoTag(), "Aplicacion");
@@ -47,9 +47,7 @@ public class ParserTestSuite {
 	    assertEquals(handler.getContenidoXml().get(3).getTipoTag(), "Aplicacion");
 	    assertEquals(handler.getContenidoXml().get(3).getValor(), "exiftool");
 	    assertEquals(handler.getContenidoXml().get(4).getTipoTag(), "Aplicacion");
-	    assertEquals(handler.getContenidoXml().get(4).getValor(), "virtualdub");
-	    assertEquals(handler.getContenidoXml().get(5).getTipoTag(), "Aplicacion");
-	    assertEquals(handler.getContenidoXml().get(5).getValor(), "git");
+	    assertEquals(handler.getContenidoXml().get(4).getValor(), "git");
 	  }
 	
 	@Test
@@ -64,31 +62,27 @@ public class ParserTestSuite {
 		List<Parametro> parametros = new ArrayList<Parametro>();
 		
 	    parser.parsearXml("algoritmos2_tp.xml");
-	    aplicacion = handler.getContenidoXml().get(5);
+	    aplicacion = handler.getContenidoXml().get(4);
 	    subApps = aplicacion.getSubAplicacioes();
-	    subApp = subApps.get(1);	
+	    subApp = subApps.get(6);	
 	    parametros = subApp.getParametros();
 
 	    assertEquals(aplicacion.getTipoTag(), "Aplicacion");
 	    assertEquals(aplicacion.getValor(), "git");
-	    assertEquals(aplicacion.getSubAplicacioes().size(), 7);
+	    assertEquals(aplicacion.getSubAplicacioes().size(), 11);
 	    assertEquals(subApps.get(0).getTipoTag(), "SubApp");
-	    assertEquals(subApps.get(0).getValor(), "commit");
-	    assertEquals(subApps.get(1).getValor(), "push");
-	    assertEquals(subApps.get(2).getValor(), "fetch");
-	    assertEquals(subApps.get(3).getValor(), "merge");
-	    assertEquals(subApps.get(4).getValor(), "pull");
-	    assertEquals(subApps.get(5).getValor(), "add");
-	    assertEquals(subApps.get(6).getValor(), "revert");
+	    assertEquals(subApps.get(5).getUsoReal(), "commit");
+	    assertEquals(subApps.get(6).getUsoReal(), "push");
+	    assertEquals(subApps.get(2).getUsoReal(), "clone");
 	    assertEquals(subApp.getTipoTag(), "SubApp");
-	    assertEquals(subApp.getValor(), "push");
+	    assertEquals(subApp.getUsoReal(), "push");
 	    assertEquals(subApp.getParametros().size(), 3);
 	    assertEquals(parametros.get(0).getTipoTag(), "Parametro");
-	    assertEquals(parametros.get(0).getValor(), "nombre_rama");
+	    assertEquals(parametros.get(0).getValor(), "Rama a pushear");
 	    assertEquals(parametros.get(0).getTipoValidacion(), "obligatorio");
-	    assertEquals(parametros.get(1).getValor(), "usuario");
+	    assertEquals(parametros.get(1).getValor(), "Usuario");
 	    assertEquals(parametros.get(1).getTipoValidacion(), "obligatorio");
-	    assertEquals(parametros.get(2).getValor(), "password");
+	    assertEquals(parametros.get(2).getValor(), "Password");
 	    assertEquals(parametros.get(2).getTipoValidacion(), "obligatorio");
 	    assertEquals(parametros.get(2).getCotaMin(), 6);
 	    assertEquals(parametros.get(2).getCotaMax(), 12);

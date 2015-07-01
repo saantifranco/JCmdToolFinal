@@ -3,7 +3,7 @@ package Interfaz;
 public class VentanaTest {
 	
 	public static void main(String[] args) {
-		 VentanaSwing v = new VentanaSwing();
+		 Ventana v = new Ventana();
 		 v.setVisible(true);
 	}
 
