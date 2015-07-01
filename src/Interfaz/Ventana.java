@@ -207,7 +207,7 @@ public class Ventana extends JFrame {
 				String linea = null;
 				try
 				{
-					Process process= cmd.exec(generarCmd());
+					Process process= cmd.exec(textField.getText());
 					System.out.println("cmd /c " +generarCmd());
 					//process = cmd.exec("exit");
 					
